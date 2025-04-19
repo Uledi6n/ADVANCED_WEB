@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/kuku/css/font-awesome.min.css">
+    <link rel="stylesheet" href="project.css">
+</head>
+
+<body style="background-image: repeating-radial-gradient( rgb(165, 122, 2), rgb(217, 7, 245), rgb(36, 2, 41));">
+    <div class="container m-5 shadow-lg m-auto">
+        <div class="row mt-5">
+            <h1 class="lead display-3 mt-4 mb-4 text-center text-white fw-bold">Welcome to login page</h1>
+            <div class="col-sm-5 col-md-5 text-white m-auto border border-radius">
+                <p class="lead display-3 text-white fw-bold text-center">login now</p>
+                <form action="login.php" method="post" enctype="multipart/form-data">
+                    <label for="email" class="form-label fs-2 fw-bold text-white">Email:</label>
+                    <div class="input-group">
+                        <div class="bg-secondary p-2"><i class="fa fa-user text-dark" style="font-size: 2vw;"></i></div>
+                        <input type="text" class="form-control p-4 " placeholder="enter your Email" name="email">
+                    </div>
+                    <label for="password" class="form-label fs-2 fw-bold">Password:</label>
+                    <div class="input-group">
+                        <div class="bg-secondary p-2"><i class="fa fa-key text-dark" style="font-size: 2vw;"></i></div>
+                        <input type="password" class="form-control p-4 " placeholder="enter your password" name="password">
+                    </div>
+                    <button class="btn mt-4 w-100 p-3 fs-3 text-white fw-bold" name="login" style="background:linear-gradient(169deg, red,green);"><i class="fa fa-sign-in fs-3"></i>Login now</button>
+                </form>
+            </div>
+            <i class="fa fa-heart text-center mt-5" style="color: darkred;font-size: 5vw;"></i>
+
+        </div>
+
+    </div>
+    <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap4/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

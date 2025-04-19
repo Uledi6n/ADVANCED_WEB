@@ -1,0 +1,33 @@
+.section1{
+    font-size: 2.5vw;
+    margin-right: 10px;
+}
+#sect1{
+    font-size: 2.5vw;
+    float: left;
+    text-decoration: none;
+    color: rgb(212, 126, 13);
+}
+#sect2{
+    font-size: 2.5vw;
+    float: right;
+    text-decoration: none;
+    color: rgb(212, 126, 13);
+}
+.image{
+    width: 40%;
+    border-radius: 100%;
+    height: auto;
+}
+#handdirection{
+    font-size: 4vw;
+    color: blueviolet;
+}
+div #section2{
+    color: lawngreen;
+
+}
+#stan1{
+    background-image: url(image/stan.png);
+}
+
