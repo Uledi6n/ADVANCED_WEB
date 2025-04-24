@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        input{
+            margin-left: 1%;
+        }
+        #container{
+           width: 80%;
+           padding: 2%;
+           background-color: rgb(194, 190, 190);
+        }
+        #section{
+            display: flex;
+        }
+        label{
+            font-weight: bold;
+        }
+        #section1{
+            width: 50%;
+            text-align: right;
+        }
+        #section2{
+            width: 50%;
+            text-align: right;
+        }
+        input[type='checkbox']{
+            margin-right: 30%;
+        }
+        
+        #radio1{
+            margin-right: 30%;
+        }
+        #radio{
+            margin-right: 30%;
+        }
+        input[type='number']{
+            width: 10%;
+            margin-right: 21%;
+        }
+        #state{
+            width: 8%;
+            margin-right: 24%;
+        }
+        #radio{
+            margin-right: 1%;
+            margin-right: 30%;
+        }
+        h1{
+            text-align: center;
+            font-size: 4vw;
+            font-style: italic;
+        }
+    </style>
+    <title>Employee form</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Employee Data</h1>
+        <div id="section">
+            <div id="section1">
+                <form>
+                    <label for="E_id">Employee ID</label id="fname">
+                    <input type="number" name="E_id" id="" placeholder="102"><br><br>
+
+                    <label for="M_id">Manager ID</label>
+                    <input type="number" name="M_id" id="" placeholder="501"><br><br>
+
+                    <label for="emp_fname">Emp_FirstNmae</label>
+                    <input type="text" name="emp_fname" id="" placeholder="Fran"><br><br>
+
+                    <label for="emp_lname">Emp_Last Nmae</label>
+                    <input type="text" name="emp_lname" id="" placeholder="Whitney"><br><br>
+
+                    <label for="D_id">Department ID</label>
+                    <input type="number" name="D_id" id="" placeholder="100"><br><br>
+
+                    <label for="street">Street</label>
+                    <input type="text" name="street" id="" placeholder="49 East Washington Street"><br><br>
+                    
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="" placeholder="Needham"><br><br>
+
+                    <label for="state">State</label>
+                    <input type="textr" name="state" id="state" placeholder="MA"><br><br>
+
+                    <label for="zip">Zip Code</label>
+                    <input type="text" name="zip" id="" placeholder="02192-"><br><br>
+
+                    <label for="phone">Phone</label>
+                    <input type="tel" name="phone" id="" placeholder="(617) 555-3985"><br><br>
+
+                    <label for="sex" id="gender">Sex</label>
+                    <input type="radio" name="sex" id="radio"><br><br>
+                    <input type="radio" name="sex" id="radio"><br><br>
+                </form>
+            </div>
+            <div id="section2">
+                <form>
+                    <div id="rightsided">
+                        <label for="bod">Birth Date:</label>
+                        <input type="text" name="dob" id="" placeholder="06/05/1962"><br><br>
+
+                        <label for="sec_no">Soc.Sec.No:</label>
+                        <input type="text" name="sec_no" id="" placeholder="017-34-9033"><br><br>
+
+                        <label for="salary">Salary:</label>
+                        <input type="number" name="salary" id="" placeholder="$45,700.00"><br><br>
+
+                        <label for="start_date">Start Date</label>
+                        <input type="text" name="start_date" id="" placeholder="02/26/1990"><br><br>
+
+                        <label for="finish_date">Termination Date:</label>
+                        <input type="text" name="finish_date" id="" placeholder="00/00/0000"><br><br>
+                    </div>
+                    <div id="leftsided">
+                        <label for="status">Status:</label>
+                        <span id="status">
+                            <input type="radio" name="staus" value="Active">
+                            <label for="status">Active</label id="radio"><br>
+                            <input type="radio" name="staus" value="Terminated">
+                            <label for="status">Terminated</label><br>
+                            <input type="radio" name="staus" value="On leave">
+                            <label for="status">On Leave</label><br>
+                        </span><br><br>
+                        <span id="health">
+                            <label for="healthinsurance">Health Insurance</label>
+                            <input type="checkbox" name="healthinsurance" value="Health Insurance" checked><br><br>
+                            <label for="lifeinsurance">Life Insurance</label>
+                            <input type="checkbox" name="lifeinsurance" value="Life Insurance"><br><br>
+                            <label for="daycare">Day Care</label>
+                            <input type="checkbox" name="daycare" value="Day Care"><br><br>
+                        </span><br><br>
+                    </div>
+
+                    
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

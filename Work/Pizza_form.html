@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>forms</title>
+    <style>
+        #forms1{
+            width: 98%;
+            margin: auto;
+            padding: 2%;
+            font-size: 2vw;
+        }
+        input[type='text']{
+            margin-left: 2%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        input[type='checkbox']{
+            margin-left: 2%;
+            font-size: 2vw;
+        }
+        input[type='tel']{
+            margin-left: 4.9%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        input[type='number']{
+            margin-left: 4.9%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        input[type='email']{
+            margin-left: 9.6%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        input[type='password']{
+            margin-left: 2%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        input[type='reset']{
+            margin-left: 2%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        input[type='submit']{
+            margin-left: 2%;
+            width: 25%;
+            height: auto;
+            font-size: 2vw;
+        }
+        #fieldset1{
+            padding: 1.8%;
+        }
+        label{
+            font-size: 2vw;
+            margin-left: 1%;
+        }
+         #card{
+             width: 25%;
+             font-size: 2vw;
+             margin-left: 6%;
+         }
+         #pizzasize{
+             width: 25%;
+             font-size: 2vw;
+             margin-left: 6%;
+         }
+         legend{
+            font-size: 2vw;
+         }
+         #spices{
+             margin-left: 20%;
+         }
+         textarea{
+             width: 25%;
+         }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <form id="forms1">
+            <fieldset>
+                <legend>PIZZA ORDER FORM</legend>
+                <fieldset id="fieldset1">
+                    <legend>Delivery Address</legend>
+                    <label for="fullname">Fullname</label>
+                    <input type="text" name="fullname" placeholder="fullname">
+
+                    <label for="Street Address">Street Address</label>
+                    <input type="text" name="Street Address" placeholder="Street Address"><br><br>
+                    <label for="Phone">Phone</label>
+                    <input type="tel" name="Phone" placeholder="phone">
+                    
+                    <label for="Email">Email</label>
+                    <input type="email" name="Email" placeholder="Email"><br><br>
+
+                    <label for="Password">Password</label>
+                    <input type="password" name="Password" placeholder="Password">
+                </fieldset>
+                <fieldset>
+                    <legend>Payment Information</legend>
+                    <label for="card">Card Type</label>
+                    <select name="card" id="card">
+                        <option value="Master Card">Master Crad</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Discover">Discover</option>
+                    </select>
+                    <label for="number">Card Number</label>
+                    <input type="number" name="number" placeholder="Crad Number"><br><br>
+
+                    <label for="cardname">Name On Card</label>
+                    <input type="text" name="cardname" placeholder="name">
+                </fieldset>
+                <fieldset>
+                    <legend>Customize Your Pizza</legend>
+                    <label for="pizzasize">Pizza Size</label>
+                    <select name="pizzasize" id="pizzasize">
+                        <option value="large">Large</option>
+                        <option value="medium">Medium</option>
+                        <option value="small">Small</option>
+                    </select>
+                    <label for="Quantity">Card Quantity</label>
+                    <input type="number" name="Quantity"><br><br>
+                    <label for="spices">Spices</label>
+                    <span id="spices">
+                        <label for="black">Black pepper</label>
+                        <input type="checkbox" name="black" value="Black pepper" id="spice" checked>
+                        <label for="black">Black pepper</label>
+                        <input type="checkbox" name="black" value="Black pepper" id="spice">
+                        <label for="black">Black pepper</label>
+                        <input type="checkbox" name="black" value="Black pepper" id="spice">
+                    </span><br><br>
+                    <label for="comment">Other Requirement</label>
+                    <textarea name="comment" id=""></textarea>
+                    <label for="meat">Meat</label>
+                    <span id="meat">
+                        <label for="meat">Fish</label>
+                        <input type="radio" name="meat" id="" value="Fish">  
+                        <label for="cow">Cow</label>
+                        <input type="radio" name="meat" id="" value="Cow">  
+                        <label for="chicken">Chicken</label>
+                        <input type="radio" name="meat" id="" value="Chicken"> 
+                    </span> 
+                </fieldset><br>
+                <input type="reset" value="Clear Order">
+                <input type="submit" value="Place Order">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
