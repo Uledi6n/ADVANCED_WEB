@@ -1,0 +1,91 @@
+#login{
+    background-color: rgb(60, 59, 82);
+}
+hr{
+    height: 1%;
+    background-color: rgb(222, 242, 242);
+    border-radius: 20%;
+}
+#demo{
+    background-color: rgb(54, 54, 128);
+}
+#dashboard{
+    width: 9%;
+    height: auto;
+}
+#image{
+    width: 20%;
+    height: auto;
+}
+#sidebar{
+    background-color: darkblue;
+}
+#header{
+    background-color: rgb(12, 227, 227);
+}
+#leftcontainer,#left{
+    font-size: 1.5vw;
+    font-family: Times New Roman;
+}
+#icon{
+    width: 8%;
+    height: auto;
+    float: right;
+}
+#adminname{
+    float: right;
+    font-weight: bold;
+}
+#line{
+    height: 1%;
+    background-color: orangered;
+}
+#card{
+    font-size: 1vw;
+}
+#search{
+    float: right;
+    font-size: 1.5vw;
+}
+#text1,#btn1,#btn2,#box{
+    font-size: 1.5vw;
+}
+#table{
+    font-size: 1vw;
+}
+label{
+    font-size: 1.5vw;
+}
+input{
+    font-size: 1vw;
+
+}
+#userrole,#userstatus{
+    font-size: 1.5vw;
+}
+#entry,#entries{
+    font-size: 1.5vw;
+}
+#semister{
+    font-size: 1.5vw;
+    width: 100%;
+}
+#year{
+    font-size: 1.5vw;
+    width: 80%;
+    height: auto%;
+}
+#btn3{
+    font-size: 1vw;
+    width: 20%;
+    height: 2%;
+    margin-top: 4.5%;
+    background-color: blue;
+}
+#select1,#select2{
+    width: 40%;
+}
+#mytable{
+    padding: 2%;
+    font-size: 1vw;
+}
