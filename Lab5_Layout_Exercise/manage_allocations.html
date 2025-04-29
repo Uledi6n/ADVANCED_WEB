@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/kuku/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>My Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-3 col-md-3 col-lg-3" id="leftcontainer">
+                <div id="header" class="p-2">
+                    <img src="images/logo.jpg" alt="" class="img-fluid rounded-circle" id="image">
+                </div>
+                <div id="sidebar" class="p-2">
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-book text-white"></span>
+                        <a href="dashboard1.html" class="text-white text-decoration-none">Dashboard</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-users text-warning"></span>
+                        <a href="manage_users.html" class="text-white text-decoration-none">Manage users</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-users text-success"></span>
+                        <a href="#" class="text-white text-decoration-none">Manage Instructors</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-users text-info"></span>
+                        <a href="manage_students.html" class="text-white text-decoration-none">Manage students</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-envelope text-white"></span>
+                        <a href="manage_course.html" class="text-white text-decoration-none">Manage course</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-folder text-warning"></span>
+                        <a href="manage_result.html" class="text-white text-decoration-none">Manage Results</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-folder text-info"></span>
+                        <a href="manage_allocations.html" class="text-white text-decoration-none">Manage Allocations</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-9 col-md-9 col-lg-9 ms-0 me-0">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-primary text-white">
+                        <span class="fa fa-bars"></span>-
+                    </button>
+                    <span class="fa fa-user fs-2" id="icon" ></span>
+                    <span id="adminname" class="dropdown">
+                        <a href="#" class="text-decoration-none text-dark"  data-bs-toggle="dropdown" aria-expanded="false">Admin name</a>
+                        <div class="dropdown-menu" aria-labelledby="adminname">
+                            <div class="dropdown-item">
+                                <span class="fa fa-key"></span>
+                                <a href="#" class="text-decoration">Change password</a></span>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="fa fa-users"></span>
+                                <a href="#" class="text-decoration">Change profile</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="fa fa-unlock"></span>
+                                <a href="#" class="text-decoration">logout</a>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <hr class="text-danger" id="line">
+                <div class="p-1" id="box">
+                    <div class="d-flex mt-4">
+                        <div id="select1">
+                            <label for="year">Select year</label><br>
+                            <select name="year" id="year">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                            </select>
+                        </div>
+                        <div id="select2">
+                            <label for="semister">Select Semister</label><br>
+                            <select name="semister" id="year">
+                                <option value="semister1">semister1</option>
+                                <option value="semister2">semister2</option>
+                                <option value="semister3">semister3</option>
+                            </select>
+                        </div>
+                        <button type="button" class="text-white" id="btn3">View Allocation</button>
+                    </div>
+                    <button id="btn1" type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#mymodal">+add new Allocation</button><br>
+                    <div class="p-1 d-inline-flex mt-4 mb-2">
+                        <label name="entry" id="entry">Show</l>
+                            <select name="entry" id="entries">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                            </select><span class="ms-1">entries</span>
+                    </div>
+                    <div id="search" class="mt-4 mb-2">
+                        Search<input type="search" name="search" placeholder="search">
+                    </div>
+                    <div class="table-responsive-md" id="table">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>instructor</th>
+                                    <th>Course</th>
+                                    <th>Year</th>
+                                    <th>Semister</th>
+                                    <th>Edit</th>
+                                    <th>Drop</th>
+                                    <th>Enrolled students</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dr Smith</td>
+                                    <td>CSC101_Intro to programming</td>
+                                    <td>2025</td>
+                                    <td>1</td>
+                                    <td><button type="button" class="btn btn-warning">Edit</button></td>
+                                    <td><button type="button" class="btn btn-danger">Drop</button></td>
+                                    <td><button type="button" class="btn btn-info">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal" id="mymodal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header btn-light">
+                                    <h4 class="modal-title">Add New Allocation</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form bindsubmit="">
+                                        <label for="instructor" class="form-label">Instructor</label> <br>
+                                        <select name="instructor" class="form-control" id="entries">
+                                            <option value="Dr smith">Dr smith</option>
+                                            <option value="dr abdullah">Dr abdullah</option>
+                                        </select>
+                                        
+                                        <label for="course" class="form-label">Course</label><br>
+                                        <select name="course" class="form-control" id="entries">
+                                            <option value="CSC101_Intro to programming">CSC101_Intro to programming</option>
+                                            <option value="BITA">BiITA</option>
+                                        </select>
+
+                                        <label for="year" class="form-label">Year</label><br>
+                                        <input type="text" class="form-control"  name="year" id="" required><br>
+
+                                        <label for="semister" class="form-label">Semister</label><br>
+                                        <input type="text" class="form-control"  name="semister" id="" required><br>
+                                        <div class="float-end">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                                            <button type="submit" class="btn btn-primary">Save Allocations</button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination float-end">
+                    <div class="page-item">
+                        <a href="#" class="page-link text-decoration-none">previous</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link text-decoration-none">1</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link text-decoration-none">Next</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

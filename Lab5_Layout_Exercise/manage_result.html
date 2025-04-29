@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/kuku/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>My Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-3 col-md-3 col-lg-3" id="leftcontainer">
+                <div id="header" class="p-2">
+                    <img src="images/logo.jpg" alt="" class="img-fluid rounded-circle" id="image">
+                </div>
+                <div id="sidebar" class="p-2">
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-book text-white"></span>
+                        <a href="dashboard1.html" class="text-white text-decoration-none">Dashboard</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-users text-warning"></span>
+                        <a href="manage_users.html" class="text-white text-decoration-none">Manage users</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-users text-success"></span>
+                        <a href="#" class="text-white text-decoration-none">Manage Instructors</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-users text-info"></span>
+                        <a href="manage_students.html" class="text-white text-decoration-none">Manage students</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-envelope text-white"></span>
+                        <a href="manage_course.html" class="text-white text-decoration-none">Manage course</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-folder text-warning"></span>
+                        <a href="manage_result.html" class="text-white text-decoration-none">Manage Results</a>
+                    </p>
+                    <p class="lead mt-2" id="left">
+                        <span class="fa fa-folder text-info"></span>
+                        <a href="manage_allocations.html" class="text-white text-decoration-none">Manage Allocations</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-9 col-md-9 col-lg-9 ms-0 me-0">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-primary text-white">
+                        <span class="fa fa-bars"></span>-
+                    </button>
+                    <span class="fa fa-user fs-2" id="icon" ></span>
+                    <span id="adminname" class="dropdown">
+                        <a href="#" class="text-decoration-none text-dark"  data-bs-toggle="dropdown" aria-expanded="false">Admin name</a>
+                        <div class="dropdown-menu" aria-labelledby="adminname">
+                            <div class="dropdown-item">
+                                <span class="fa fa-key"></span>
+                                <a href="#" class="text-decoration">Change password</a></span>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="fa fa-users"></span>
+                                <a href="#" class="text-decoration">Change profile</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="fa fa-unlock"></span>
+                                <a href="#" class="text-decoration">logout</a>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <hr class="text-danger" id="line">
+                <div class="p-1" id="box">
+                    <div class="d-flex mt-4">
+                        <div id="select1">
+                            <label for="year">Select year</label><br>
+                            <select name="year" id="year">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                            </select>
+                        </div>
+                        <div id="select2">
+                            <label for="semister">Select Semister</label><br>
+                            <select name="semister" id="year">
+                                <option value="semister1">semister1</option>
+                                <option value="semister2">semister2</option>
+                                <option value="semister3">semister3</option>
+                            </select>
+                        </div>
+                        <button type="button" class="text-white" id="btn3">Filter</button>
+                    </div>
+                    
+                    <div id="search" class="mt-4 mb-2">
+                        Search<input type="search" name="search" placeholder="search">
+                    </div>
+                    <button id="btn1" type="button" class="btn btn-light mt-3 mb-3" >Export to excel</button><br>
+                    <div class="table-responsive-md" id="table">
+                        <table class="table table-sm table-bordered">
+                            <th>
+                                <tr>
+                                    <th>Instructors</th>
+                                    <th>course</th>
+                                    <th>Year</th>
+                                    <th>Semister</th>
+                                    <th>View Result</th>
+                                    <th>Upload Result</th>
+                                </tr>
+                            </th>
+                            <tbody>
+                                <tr>
+                                    <td>Dr John Doe</td>
+                                    <td>CSC101_Introduction to computer science</td>
+                                    <td>2024</td>
+                                    <td>1</td>
+                                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mymodal">view result</button></td>
+                                    <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#upload">Upload Result</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal" id="mymodal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header btn-light">
+                                    <h4 class="modal-title">Manage Result</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-sm table-bordered p-3">
+                                        <tr>
+                                            <th id="mytable">Registration No</th>
+                                            <th id="mytable">Course work score</th>
+                                            <th id="mytable">Exam Score</th>
+                                            <th id="mytable">Total Score</th>
+                                            <th id="mytable">Grade</th>
+                                            <th id="mytable">Edit</th>
+                                            <th id="mytable">Delete</th>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                12345
+                                            </td>
+                                            <td>75</td>
+                                            <td>80</td>
+                                            <td>155</td>
+                                            <td>A</td>
+                                            <td><button type="button" class="btn btn-warning">Edit</button></td>
+                                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                12346
+                                            </td>
+                                            <td>65</td>
+                                            <td>70</td>
+                                            <td>135</td>
+                                            <td>B</td>
+                                            <td><button type="button" class="btn btn-warning">Edit</button></td>
+                                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+                                        </tr>
+                                    </table>
+                                    <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal p-2" id="upload">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header btn-light">
+                                    <h4 class="modal-title">Manage Result</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div  class="table-responsive-md p-4">
+                                    <table class="table table-sm table-bordered p-3">
+                                        <tr>
+                                            <th id="mytable">Registration No</th>
+                                            <th id="mytable">Course work score</th>
+                                            <th id="mytable">Exam Score</th>
+                                            <th id="mytable">Action</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                12345
+                                            </td>
+                                            <td><input type="text" class="form-control" placeholder="Enter course score"></td>
+                                            <td><input type="text" class="form-control" placeholder="Enter Exam score"></td>
+                                            <td><button type="submit"class="btn btn-primary">Save</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                12346
+                                            </td>
+                                            <td><input type="text" class="form-control" placeholder="Enter course score"></td>
+                                            <td><input type="text" class="form-control" placeholder="Enter Exam score"></td>
+                                            <td><button type="submit"class="btn btn-primary">Save</button></td>
+                                        </tr>
+                                    </table>
+                                    <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination float-end">
+                    <div class="page-item">
+                        <a href="#" class="page-link text-decoration-none">previous</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link text-decoration-none">1</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link text-decoration-none">Next</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
