@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        input,select{
+            width: 30%;
+            padding: 1%;
+            font-size: 1vw;
+        }
+        #container{
+            justify-content: center;
+            width: 80%;
+            padding: 2%;
+            margin: auto;
+        }
+        .cont{
+            justify-content: center;
+            width: 80%;
+            padding: 2%;
+            margin: auto;
+        }
+        .btn{
+            background-color: green;
+            width: 100%;
+            padding: 1%;
+            color: azure;
+        }
+        .btndel{
+            background-color:red;
+            width: 100%;
+            padding: 1%;
+            color: azure;
+        }
+        #form{
+            background-color: lightgrey;
+            padding: 1%;
+        }
+        #dis{
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Smart Task Board</h1>
+        <form id="form">
+            <input type="text" id="task" placeholder="Enter Task">
+            <select name="size" id="size">
+                <option value="low">Low</option>
+                <option value="medium">medium</option>
+                <option value="Large">Large</option>
+            </select>
+            <input type="submit" value="Add Task" id="dis">
+        </form>
+        <div id="summary">
+            <h2>Task Summary</h2>
+            <p>Total task <span></span></p>
+            <p>Completed task </p>
+            <p>Remaining task </p>
+        </div>
+    </div>
+    <script>
+        document.querySelector('#form').addEventListener("submit",(e)=>{
+            e.preventDefault()
+
+            let task=document.getElementById('task').value;
+            let size=document.getElementById('size').value;
+            if(task==""){
+                alert("Enter your task")
+            }else if(size==""){
+                alert("Select size of your task")
+            }else{
+
+                let sum=0;
+                for(let a=0;a>=0;a++){
+                    document.querySelector('span').textContent=sum+a
+                }
+                let div=document.createElement('div');
+                div.classList.add('cont')
+                document.body.appendChild(div)
+
+                let h3=document.createElement('h3');
+                h3.textContent=task
+                div.appendChild(h3)
+
+                let h4=document.createElement('h4')
+                h4.textContent=size
+                div.appendChild(h4)
+
+                let btn=document.createElement('button');
+                btn.textContent="Mark as Done"
+                btn.className='btn'
+                btn.classList.add('btn')
+                btn.addEventListener('click',()=>{
+                    h3.style.textDecoration='line-through'
+                    h4.style.textDecoration='line-through'
+                })
+                div.appendChild(btn)
+
+                let btndel=document.createElement('button');
+                btndel.textContent="Delete"
+                btndel.classList.add('btndel')
+                div.appendChild(btndel)
+                btndel.addEventListener('click',()=>{
+                    div.removeChild(h3)
+                    div.removeChild(h4)
+                    div.removeChild(btn)
+                    div.removeChild(btndel)
+                })
+
+            }
+        })
+    </script>
+</body>
+</html>
