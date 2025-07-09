@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Form Display Without Loop</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    form button {
+      background: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    form button:hover {
+      background: #2980b9;
+    }
+
+    #displayContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+      justify-content: center;
+    }
+
+    .entry-box {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 220px;
+      transition: transform 0.2s;
+    }
+
+    .entry-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .entry-box p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .delete-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .delete-btn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Submit Your Info</h2>
+
+  <form id="myForm">
+    <label>Full Name:
+      <input type="text" id="fullname" required />
+    </label>
+    <label>Email:
+      <input type="email" id="email" required />
+    </label>
+    <label>Age:
+      <input type="number" id="age" required />
+    </label>
+    <label>Gender:
+      <select id="gender" required>
+        <option value="">--Select--</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="displayContainer"></div>
+
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Get values without loop
+      const fullname = document.getElementById("fullname").value;
+      const email = document.getElementById("email").value;
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+
+      // Create main box
+      const entryDiv = document.createElement("div");
+      entryDiv.className = "entry-box";
+
+      // Add details
+      const nameP = document.createElement("p");
+      nameP.textContent = "Full Name: " + fullname;
+
+      const emailP = document.createElement("p");
+      emailP.textContent = "Email: " + email;
+
+      const ageP = document.createElement("p");
+      ageP.textContent = "Age: " + age;
+
+      const genderP = document.createElement("p");
+      genderP.textContent = "Gender: " + gender;
+
+      // Add delete button
+      const deleteBtn = document.createElement("button");
+      deleteBtn.className = "delete-btn";
+      deleteBtn.textContent = "Delete";
+      deleteBtn.onclick = () => entryDiv.remove();
+
+      // Append everything
+      entryDiv.appendChild(nameP);
+      entryDiv.appendChild(emailP);
+      entryDiv.appendChild(ageP);
+      entryDiv.appendChild(genderP);
+      entryDiv.appendChild(deleteBtn);
+
+      document.getElementById("displayContainer").appendChild(entryDiv);
+
+      // Reset form
+      event.target.reset();
+    });
+  </script>
+
+</body>
+</html>

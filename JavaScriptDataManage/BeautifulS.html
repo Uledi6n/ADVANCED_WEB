@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Beautiful User Cards with Update/Delete</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: #fff;
+      padding: 25px;
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+      color: #fff;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card p {
+      margin: 6px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .update-btn, .delete-btn {
+      flex: 1;
+      margin: 0 5px;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .update-btn {
+      background: #f39c12;
+    }
+
+    .update-btn:hover {
+      background: #e67e22;
+    }
+
+    .delete-btn {
+      background: #e74c3c;
+    }
+
+    .delete-btn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>User Information Form</h2>
+
+  <form id="userForm">
+    <label>Full Name:
+      <input type="text" id="fullname" required>
+    </label>
+    <label>Email:
+      <input type="email" id="email" required>
+    </label>
+    <label>Age:
+      <input type="number" id="age" required>
+    </label>
+    <label>Gender:
+      <select id="gender" required>
+        <option value="">--Select--</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </label>
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+
+  <div class="card-container" id="displayContainer"></div>
+
+  <script>
+    const form = document.getElementById("userForm");
+    const displayContainer = document.getElementById("displayContainer");
+    let editingEmail = null;
+
+    // Load data on page load
+    window.onload = () => {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      users.forEach(user => createCard(user));
+    };
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const user = {
+        fullname: document.getElementById("fullname").value,
+        email: document.getElementById("email").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value
+      };
+
+      if (editingEmail) {
+        updateUser(user);
+      } else {
+        saveUser(user);
+      }
+
+      form.reset();
+      editingEmail = null;
+    });
+
+    function saveUser(user) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+      createCard(user);
+    }
+
+    function createCard(user) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.setAttribute("data-email", user.email);
+
+      const nameP = document.createElement("p");
+      nameP.textContent = "Full Name: " + user.fullname;
+
+      const emailP = document.createElement("p");
+      emailP.textContent = "Email: " + user.email;
+
+      const ageP = document.createElement("p");
+      ageP.textContent = "Age: " + user.age;
+
+      const genderP = document.createElement("p");
+      genderP.textContent = "Gender: " + user.gender;
+
+      const btnGroup = document.createElement("div");
+      btnGroup.className = "button-group";
+
+      const updateBtn = document.createElement("button");
+      updateBtn.textContent = "Update";
+      updateBtn.className = "update-btn";
+      updateBtn.onclick = () => {
+        document.getElementById("fullname").value = user.fullname;
+        document.getElementById("email").value = user.email;
+        document.getElementById("age").value = user.age;
+        document.getElementById("gender").value = user.gender;
+        editingEmail = user.email;
+      };
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = () => {
+        card.remove();
+        deleteUser(user.email);
+      };
+
+      btnGroup.appendChild(updateBtn);
+      btnGroup.appendChild(deleteBtn);
+
+      card.appendChild(nameP);
+      card.appendChild(emailP);
+      card.appendChild(ageP);
+      card.appendChild(genderP);
+      card.appendChild(btnGroup);
+
+      displayContainer.appendChild(card);
+    }
+
+    function deleteUser(email) {
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users = users.filter(u => u.email !== email);
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+
+    function updateUser(newUser) {
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users = users.map(user => user.email === editingEmail ? newUser : user);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      document.querySelectorAll(".card").forEach(card => {
+        if (card.getAttribute("data-email") === editingEmail) {
+          card.remove();
+        }
+      });
+
+      createCard(newUser);
+    }
+  </script>
+
+</body>
+</html>

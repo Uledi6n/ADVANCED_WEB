@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Table Creation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Add User Info</h2>
+
+  <form id="userForm">
+    <label>
+      Full Name: <input type="text" id="fullname" required>
+    </label><br><br>
+    <label>
+      Email: <input type="email" id="email" required>
+    </label><br><br>
+    <label>
+      Age: <input type="number" id="age" required>
+    </label><br><br>
+    <label>
+      Gender:
+      <select id="gender" required>
+        <option value="">--Select--</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </label><br><br>
+    <button type="submit">Add to Table</button>
+  </form>
+
+  <div id="tableContainer"></div>
+
+  <script>
+    // Reference to container
+    const tableContainer = document.getElementById("tableContainer");
+    let table, tbody;
+
+    document.getElementById("userForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const fullname = document.getElementById("fullname").value;
+      const email = document.getElementById("email").value;
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+
+      // Create table only once
+      if (!table) {
+        table = document.createElement("table");
+
+        // Create header
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+
+        const th1 = document.createElement("th");
+        th1.textContent = "Full Name";
+        const th2 = document.createElement("th");
+        th2.textContent = "Email";
+        const th3 = document.createElement("th");
+        th3.textContent = "Age";
+        const th4 = document.createElement("th");
+        th4.textContent = "Gender";
+        const th5 = document.createElement("th");
+        th5.textContent = "Action";
+
+        headerRow.appendChild(th1);
+        headerRow.appendChild(th2);
+        headerRow.appendChild(th3);
+        headerRow.appendChild(th4);
+        headerRow.appendChild(th5);
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Create tbody
+        tbody = document.createElement("tbody");
+        table.appendChild(tbody);
+
+        // Append table to container
+        tableContainer.appendChild(table);
+      }
+
+      // Create data row
+      const row = document.createElement("tr");
+
+      const td1 = document.createElement("td");
+      td1.textContent = fullname;
+      const td2 = document.createElement("td");
+      td2.textContent = email;
+      const td3 = document.createElement("td");
+      td3.textContent = age;
+      const td4 = document.createElement("td");
+      td4.textContent = gender;
+      const td5 = document.createElement("td");
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = function () {
+        row.remove();
+      };
+
+      td5.appendChild(deleteBtn);
+
+      row.appendChild(td1);
+      row.appendChild(td2);
+      row.appendChild(td3);
+      row.appendChild(td4);
+      row.appendChild(td5);
+
+      tbody.appendChild(row);
+
+      // Reset form
+      e.target.reset();
+    });
+  </script>
+
+</body>
+</html>
