@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enhanced Heart Scene with Full Page Particles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      user-select: none;
+      background: radial-gradient(circle, #004d00 0%, #001a00 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    /* New fixed top text */
+    #topMessage {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ff4d4d;
+      font-size: 1.8rem;
+      font-weight: bold;
+      user-select: none;
+      z-index: 1000;
+      pointer-events: none;
+      text-shadow: 0 0 5px #900000;
+      white-space: nowrap;
+    }
+
+    #scene {
+      text-align: center;
+      position: relative;
+      z-index: 2; /* above full page particles */
+    }
+
+    svg {
+      width: 320px;
+      height: auto;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .pulse {
+      animation: pulse 0.9s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .drop {
+      animation: dripFall 2.6s ease-in forwards;
+      opacity: 0.85;
+    }
+
+    @keyframes dripFall {
+      0%   { transform: translateY(0); opacity: 1; }
+      80%  { transform: translateY(60px); opacity: 0.4; }
+      100% { transform: translateY(120px); opacity: 0; }
+    }
+
+    .particle {
+      animation: floatAway 3s ease-out forwards;
+      opacity: 0.9;
+    }
+
+    .text-particle {
+      animation: floatAwayText 3s ease-out forwards;
+      opacity: 0.8;
+    }
+
+    .page-particle {
+      animation: driftUp 6s linear forwards;
+      opacity: 0.7;
+    }
+
+    /* Orange bottom particles */
+    .bottom-particle {
+      animation: riseUp 5s linear forwards;
+      opacity: 0.85;
+    }
+
+    @keyframes floatAway {
+      0% { transform: translate(0, 0); opacity: 1; }
+      100% { 
+        transform: translate(var(--x), var(--y)); 
+        opacity: 0;
+      }
+    }
+    @keyframes floatAwayText {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { 
+        transform: translate(var(--x), var(--y)) scale(1.3); 
+        opacity: 0;
+      }
+    }
+
+    @keyframes driftUp {
+      0% {
+        transform: translateY(0);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-150px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes riseUp {
+      0% {
+        transform: translateY(0);
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(-120px);
+        opacity: 0;
+      }
+    }
+
+    #form-card {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: all 0.4s ease;
+      background: rgba(0, 30, 0, 0.9);
+      border-radius: 16px;
+      padding: 20px;
+      width: 90vw;
+      max-width: 320px;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+      color: white;
+      z-index: 999;
+    }
+
+    #form-card.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .form-control {
+      background-color: #003300;
+      border: 1px solid #ff4d4d;
+      color: white;
+    }
+
+    .form-control:focus {
+      border-color: #ff4d4d;
+      box-shadow: 0 0 5px #ff4d4d;
+    }
+
+    .btn-danger {
+      background-color: #cc0000;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #e60000;
+    }
+
+    /* New love message below heart */
+    #loveMessage {
+      color: #ff4d4d;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 15px;
+      user-select: none;
+      min-height: 2em; /* to reserve space even if empty */
+      text-shadow: 0 0 4px #990000;
+    }
+
+    /* Full page particles SVG */
+    #fullPageParticles {
+      position: fixed;
+      pointer-events: none;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      overflow: visible;
+      z-index: 1;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Top message -->
+  <div id="topMessage">Register by touch me</div>
+
+  <!-- Full page particles SVG -->
+  <svg id="fullPageParticles" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <div id="scene">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" id="heartSVG" aria-label="Heart">
+      <defs>
+        <radialGradient id="heartGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ff4d4d"/>
+          <stop offset="100%" stop-color="#990000"/>
+        </radialGradient>
+
+        <clipPath id="heartClip">
+          <path d="M400,300
+                   C460,200 620,200 620,330
+                   C620,420 540,500 400,620
+                   C260,500 180,420 180,330
+                   C180,200 340,200 400,300 Z" />
+        </clipPath>
+      </defs>
+
+      <g class="pulse" fill="url(#heartGradient)">
+        <!-- Heart -->
+        <path d="M400,300
+                 C460,200 620,200 620,330
+                 C620,420 540,500 400,620
+                 C260,500 180,420 180,330
+                 C180,200 340,200 400,300 Z"
+              style="filter: drop-shadow(0 0 1.5px #440000)" />
+
+        <!-- Drops and particles -->
+        <g clip-path="url(#heartClip)" id="dropsGroup"></g>
+        <g id="particlesGroup"></g>
+      </g>
+    </svg>
+
+    <!-- New message below heart -->
+    <div id="loveMessage"></div>
+
+    <!-- Form -->
+    <div id="form-card">
+      <form id="form">
+        <h4 id="form-title" class="text-center">Register</h4>
+        <input type="text" id="fullNameInput" class="form-control mb-2" placeholder="Full Name" required />
+        <input type="email" class="form-control mb-2" placeholder="Email" required />
+        <input type="password" class="form-control mb-2" placeholder="Password" required />
+        <button type="submit" class="btn btn-danger w-100">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const heart = document.getElementById("heartSVG");
+    const formCard = document.getElementById("form-card");
+    const form = document.getElementById("form");
+    const formTitle = document.getElementById("form-title");
+    const dropsGroup = document.getElementById("dropsGroup");
+    const particlesGroup = document.getElementById("particlesGroup");
+
+    const loveMessage = document.getElementById("loveMessage");
+
+    const fullPageParticles = document.getElementById("fullPageParticles");
+
+    const topMessage = document.getElementById("topMessage");
+    const fullNameInput = document.getElementById("fullNameInput");
+
+    let state = 0;
+
+    heart.addEventListener("click", () => {
+      state = (state + 1) % 3;
+      if (state === 1 || state === 2) {
+        formCard.classList.add("show");
+        formTitle.textContent = state === 1 ? "Register" : "Login";
+      } else {
+        formCard.classList.remove("show");
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const fullName = fullNameInput.value.trim();
+
+      if (fullName.length > 0) {
+        loveMessage.textContent = `I love you so much ${fullName}`;
+      } else {
+        loveMessage.textContent = '';
+      }
+
+      state = (state === 1) ? 2 : 1;
+      formTitle.textContent = state === 1 ? "Register" : "Login";
+      form.reset();
+      formCard.classList.remove("show");
+    });
+
+    // Drop animation (bottom fall)
+    function spawnDrop() {
+      const cx = 350 + Math.random() * 100;
+      const cy = 530 + Math.random() * 30;
+      const r = 8 + Math.random() * 4; // bigger drops
+
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("class", "drop");
+      circle.setAttribute("cx", cx);
+      circle.setAttribute("cy", cy);
+      circle.setAttribute("r", r.toFixed(1));
+      circle.setAttribute("fill", "#ff1a1a");
+
+      dropsGroup.appendChild(circle);
+      setTimeout(() => dropsGroup.removeChild(circle), 2600);
+    }
+
+    // Floating heart particles
+    function spawnParticle() {
+      const x = 400 + (Math.random() - 0.5) * 200;
+      const y = 400 + (Math.random() - 0.5) * 200;
+      const dx = (Math.random() - 0.5) * 200;
+      const dy = (Math.random() - 0.5) * 200;
+      const r = 5 + Math.random() * 4; // bigger particles
+
+      const particle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      particle.setAttribute("class", "particle");
+      particle.setAttribute("cx", x.toFixed(1));
+      particle.setAttribute("cy", y.toFixed(1));
+      particle.setAttribute("r", r.toFixed(1));
+      particle.setAttribute("fill", "#ff6666");
+      particle.style.setProperty("--x", `${dx.toFixed(1)}px`);
+      particle.style.setProperty("--y", `${dy.toFixed(1)}px`);
+
+      particlesGroup.appendChild(particle);
+      setTimeout(() => particlesGroup.removeChild(particle), 3000);
+    }
+
+    // Full page particles, size decreases as we go up
+    function spawnFullPageParticle() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      const cx = Math.random() * width;
+      const cy = Math.random() * height;
+
+      const distFromBottom = height - cy;
+      const maxSize = 6;
+      const minSize = 1;
+      const size = Math.max(minSize, (distFromBottom / height) * maxSize);
+
+      const dx = (Math.random() - 0.5) * 40;
+      const dy = - (10 + Math.random() * 20);
+
+      const particle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      particle.setAttribute("class", "page-particle");
+      particle.setAttribute("cx", cx.toFixed(1));
+      particle.setAttribute("cy", cy.toFixed(1));
+      particle.setAttribute("r", size.toFixed(1));
+      particle.setAttribute("fill", "#cc4444");
+      particle.style.setProperty("--x", `${dx.toFixed(1)}px`);
+      particle.style.setProperty("--y", `${dy.toFixed(1)}px`);
+
+      fullPageParticles.appendChild(particle);
+      setTimeout(() => fullPageParticles.removeChild(particle), 6000);
+    }
+
+    // NEW: Orange particles at bottom with varying size and drift
+    function spawnOrangeBottomParticle() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      const cx = Math.random() * width;
+      // Confine to bottom 100px of the screen
+      const cy = height - (Math.random() * 100);
+
+      // varied radius 3 to 8
+      const r = 3 + Math.random() * 5;
+
+      // Drift mostly upward, with slight horizontal drift
+      const dx = (Math.random() - 0.5) * 20; 
+      const dy = - (20 + Math.random() * 30);
+
+      const particle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      particle.setAttribute("class", "bottom-particle");
+      particle.setAttribute("cx", cx.toFixed(1));
+      particle.setAttribute("cy", cy.toFixed(1));
+      particle.setAttribute("r", r.toFixed(1));
+      particle.setAttribute("fill", "orange");
+      particle.style.setProperty("--x", `${dx.toFixed(1)}px`);
+      particle.style.setProperty("--y", `${dy.toFixed(1)}px`);
+
+      fullPageParticles.appendChild(particle);
+      setTimeout(() => fullPageParticles.removeChild(particle), 5000);
+    }
+
+    setInterval(spawnDrop, 300);
+    setInterval(spawnParticle, 70);
+    setInterval(spawnFullPageParticle, 50);
+    setInterval(spawnOrangeBottomParticle, 100);  // More frequent for dense effect
+
+  </script>
+</body>
+</html>
